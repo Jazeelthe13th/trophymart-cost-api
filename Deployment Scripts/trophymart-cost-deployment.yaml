@@ -1,0 +1,29 @@
+apiVersion : apps/v1
+kind : Deployment
+metadata :
+  name : trophymart-cost-deployment
+  labels :
+    app : trophymart
+    tier : backend
+    role : api
+spec :
+  replicas : 1
+  selector :
+    matchLabels :
+      app : trophymart
+      tier : backend
+      role : api
+  template :
+    metadata :
+      labels :
+        app : trophymart
+        tier : backend
+        role : api
+    spec :
+      restartPolicy : Always
+      containers :
+        - name : cost-api
+          image : trophymart-cost-api:latest
+          imagePullPolicy : Always
+          ports :
+            - containerPort : 8080
